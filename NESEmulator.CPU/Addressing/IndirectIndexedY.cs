@@ -2,6 +2,10 @@
 {
     public class IndirectIndexedY : IAddressingMode
     {
+        public static IndirectIndexedY Instance = new IndirectIndexedY();
+
+        public int StandardCpuCycles { get; } = 6;
+
         public (ushort, bool) GetAddress(State state)
         {
             // Note that the indexed indirect address always targets a zero page address
@@ -19,7 +23,7 @@
             // If a page boundary is broken by this add, we need to add one cycle
             var finalAddress = newAddress + state.Registers.Y;
 
-            return ((ushort)finalAddress, newAddress / 256 != finalAddress / 256);
+            return ((ushort)finalAddress, newAddress / 256 == finalAddress / 256);
         }
     }
 }

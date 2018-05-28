@@ -2,6 +2,10 @@
 {
     public class IndexedIndirectX : IAddressingMode
     {
+        public static IndexedIndirectX Instance = new IndexedIndirectX();
+
+        public int StandardCpuCycles { get; } = 6;
+
         public (ushort, bool) GetAddress(State state)
         {
             // Note that the indexed indirect address always targets a zero page address

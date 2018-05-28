@@ -4,6 +4,15 @@ namespace NESEmulator.CPU.Addressing
 {
     public class Relative : IAddressingMode
     {
+        public static Relative Instance = new Relative();
+
+        /**
+         * This is the number of cycles if the branch is taken and there
+         * is a page boundary crossing. If a page boundary is NOT crossed, deduct 1.
+         * If the branch is not taken, deduct 2.
+         */
+        public int StandardCpuCycles { get; } = 4;
+
         public (ushort, bool) GetAddress(State state)
         {
             var offset = state.Memory[state.Registers.PC + 1];
@@ -13,7 +22,7 @@ namespace NESEmulator.CPU.Addressing
             var baseLocation = state.Registers.PC + 2;
             var newLocation = baseLocation + (sbyte) offset;
 
-            return ((ushort)newLocation, baseLocation / 256 != newLocation / 256);
+            return ((ushort)newLocation, baseLocation / 256 == newLocation / 256);
         }
     }
 }

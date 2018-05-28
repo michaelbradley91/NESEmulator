@@ -1,7 +1,14 @@
 ﻿namespace NESEmulator.CPU.Addressing
 {
+    /**
+     * Expected to be used by JMP only.
+     */
     public class IndirectAbsolute : IAddressingMode
     {
+        public static IndirectAbsolute Instance = new IndirectAbsolute();
+
+        public int StandardCpuCycles { get; } = 5;
+
         public (ushort, bool) GetAddress(State state)
         {
             /*

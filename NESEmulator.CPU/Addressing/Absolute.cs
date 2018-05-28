@@ -2,6 +2,10 @@
 {
     public class Absolute : IAddressingMode
     {
+        public static Absolute Instance = new Absolute();
+
+        public int StandardCpuCycles { get; } = 4;
+
         public (ushort, bool) GetAddress(State state)
         {
             // Expected 4 cycles - Jump Absolute only exception taking 3 cycles.

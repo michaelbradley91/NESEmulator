@@ -45,5 +45,9 @@
         public bool SkipNextPCIncrement { get; set; }
 
         public Registers Registers { get; } = new Registers();
+
+        public ProcessorStatus Status { get; } = new ProcessorStatus();
+
+        public byte OpCode => Memory[Registers.PC];
     }
 }

@@ -2,6 +2,10 @@
 {
     public class ZeroPageIndexedX : IAddressingMode
     {
+        public static ZeroPageIndexedX Instance = new ZeroPageIndexedX();
+
+        public int StandardCpuCycles { get; } = 4;
+
         public (ushort, bool) GetAddress(State state)
         {
             // See page 81 of the Synertek manual. Zero page indexed wraps around and so stays

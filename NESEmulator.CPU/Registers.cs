@@ -16,8 +16,5 @@
 
         // The program counter
         public ushort PC { get; set; }
-
-        // The processor status register
-        public byte P { get; set; }
     }
 }
