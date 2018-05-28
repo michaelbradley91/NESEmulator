@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NESEmulator.CPU.Addressing
+﻿namespace NESEmulator.CPU.Addressing
 {
     /**
      * Absolute indexed addressing crosses a page boundary if the high order byte changes
@@ -10,12 +8,12 @@ namespace NESEmulator.CPU.Addressing
      */
     public class AbsoluteIndexedX : IAddressingMode
     {
-        public (byte, bool) Get(State state)
+        public (ushort, bool) GetAddress(State state)
         {
             var baseLocation = state.Memory[state.Registers.PC + 1] + 256 * state.Memory[state.Registers.PC + 2];
-            var finalLocation = baseLocation + state.Registers.X;
+            var finalLocation = (baseLocation + state.Registers.X) % ushort.MaxValue;
 
-            return (state.Memory[finalLocation], baseLocation / 256 != finalLocation / 256);
+            return ((ushort)finalLocation, baseLocation / 256 != finalLocation / 256);
         }
     }
 }

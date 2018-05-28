@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NESEmulator", "NESEmulator\NESEmulator.csproj", "{A3DBB6F5-CFE4-4C37-AB6A-B9364BB61853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NESEmulator.CPU", "NESEmulator.CPU\NESEmulator.CPU.csproj", "{52771D68-1C4C-468D-9321-AC03121E4657}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NESEmulator.CPU", "NESEmulator.CPU\NESEmulator.CPU.csproj", "{52771D68-1C4C-468D-9321-AC03121E4657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

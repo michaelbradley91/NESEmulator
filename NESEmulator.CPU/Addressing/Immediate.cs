@@ -2,10 +2,12 @@
 {
     public class Immediate : IAddressingMode
     {
-        public byte Get(State state)
+        public (ushort, bool) GetAddress(State state)
         {
             // Expected 2 cycles
-            return state.Memory[state.Registers.PC + 1];
+
+            // Note that the constant value is in memory within the program code, so it is just offset from the program counter
+            return ((ushort)((state.Registers.PC + 1) % ushort.MaxValue), false);
         }
     }
 }

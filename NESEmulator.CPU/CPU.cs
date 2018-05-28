@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NESEmulator.CPU
+﻿namespace NESEmulator.CPU
 {
     /// <summary>
     /// The NES CPU is a 6502 processor. An instruction manual detailing

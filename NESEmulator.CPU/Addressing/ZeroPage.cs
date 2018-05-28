@@ -2,11 +2,11 @@
 {
     public class ZeroPage : IAddressingMode
     {
-        public byte Get(State state)
+        public (ushort, bool) GetAddress(State state)
         {
             // Expected 3 cycles.
             var location = state.Memory[state.Registers.PC + 1];
-            return state.Memory[location];
+            return (location, false);
         }
     }
 }
