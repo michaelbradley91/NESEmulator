@@ -36,6 +36,14 @@
          */
         public long ClockCycle { get; set; }
 
+        /**
+         * This should be set to true by an instruction
+         * that has already adjusted the PC such as a branch operation.
+         *
+         * This can also be set to true by an operation to effectively halt execution.
+         */
+        public bool SkipNextPCIncrement { get; set; }
+
         public Registers Registers { get; } = new Registers();
     }
 }

@@ -11,7 +11,7 @@
         public (ushort, bool) GetAddress(State state)
         {
             var baseLocation = state.Memory[state.Registers.PC + 1] + 256 * state.Memory[state.Registers.PC + 2];
-            var finalLocation = (baseLocation + state.Registers.X) % ushort.MaxValue;
+            var finalLocation = baseLocation + state.Registers.X;
 
             return ((ushort)finalLocation, baseLocation / 256 != finalLocation / 256);
         }
