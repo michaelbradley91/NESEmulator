@@ -54,11 +54,27 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addressing\AbsoluteIndexedYTests.cs" />
+    <Compile Include="Addressing\AbsoluteIndexedXTests.cs" />
+    <Compile Include="Addressing\ZeroPageIndexedYTests.cs" />
+    <Compile Include="Addressing\ZeroPageIndexedXTests.cs" />
+    <Compile Include="Addressing\ZeroPageTests.cs" />
+    <Compile Include="Addressing\RelativeTests.cs" />
+    <Compile Include="Addressing\IndirectIndexedYTests.cs" />
+    <Compile Include="Addressing\IndirectAbsoluteTests.cs" />
+    <Compile Include="Addressing\IndexedIndirectXTests.cs" />
+    <Compile Include="Addressing\ImmediateTests.cs" />
     <Compile Include="Addressing\AbsoluteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NESEmulator.CPU\NESEmulator.CPU.csproj">
+      <Project>{52771d68-1c4c-468d-9321-ac03121e4657}</Project>
+      <Name>NESEmulator.CPU</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
