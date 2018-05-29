@@ -5,6 +5,9 @@
      * when the index register is added to the base address.
      *
      * In hardware, this requires another signal to process with the ADDER.
+     *
+     * Note that the PC has a dedicated 16 bit incrementer to ensure it takes one cycle
+     * to increment PC: http://visual6502.org/wiki/index.php?title=6502_increment_PC_control
      */
     public class AbsoluteIndexedY : IAddressingMode
     {

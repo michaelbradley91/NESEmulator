@@ -24,6 +24,6 @@
         public bool Overflow { get; set; }
 
         // N = bit 7
-        public bool Negative { get; set; }
+        public bool NegativeResult { get; set; }
     }
 }
