@@ -31,5 +31,24 @@ namespace NESEmulator.CPU.Tests.Helpers
             result.Negative.Should().Be(negative);
             result.Zeroed.Should().Be(zeroed);
         }
+
+        [TestCase(0x00, 0x00, false, 0x99, true, false, false, false)]
+        [TestCase(0x00, 0x00, true, 0x00, false, false, true, true)]
+        [TestCase(0x00, 0x01, true, 0x99, true, false, false, false)]
+        [TestCase(0x0A, 0x00, true, 0x0A, false, false, false, true)]
+        [TestCase(0x0B, 0x00, false, 0x0A, false, false, false, true)]
+        [TestCase(0x9A, 0x00, true, 0x9A, true, false, false, true)]
+        [TestCase(0x9B, 0x00, false, 0x9A, true, false, false, true)]
+        public void SubtractDecimal(byte a, byte b, bool inputCarry,
+            byte resultValue, bool negative, bool overflow, bool zeroed, bool resultCarry)
+        {
+            var result = ArithmeticHelpers.SubtractDecimal(a, b, inputCarry);
+
+            result.Result.Should().Be(resultValue);
+            result.Carried.Should().Be(resultCarry);
+            result.Overflowed.Should().Be(overflow);
+            result.Negative.Should().Be(negative);
+            result.Zeroed.Should().Be(zeroed);
+        }
     }
 }

@@ -66,5 +66,46 @@ namespace NESEmulator.CPU.Helpers
 
             return new ArithmeticResult(overflowOccurred, carryOccurred, zeroed, negativeResult, result);
         }
+
+        public static ArithmeticResult SubtractBinary(byte a, byte b, bool carry)
+        {
+            // Deduct the value of the complemented carry
+            var trueSignedResult = (sbyte)a - (sbyte)b + ((carry ? 1 : 0) - 1);
+            var trueUnsignedResult = a - (sbyte) b + ((carry ? 1 : 0) - 1);
+            var result = (byte) (trueUnsignedResult % 256);
+
+            var carryOccurred = trueUnsignedResult >= 0;
+            var overflowOccurred = trueSignedResult > 127 || trueSignedResult < -127;
+            var negativeResult = result >= 128;
+            var zeroResult = result == 0;
+
+            return new ArithmeticResult(overflowOccurred, carryOccurred, zeroResult, negativeResult, result);
+        }
+
+        public static ArithmeticResult SubtractDecimal(byte a, byte b, bool carry)
+        {
+            // See http://www.6502.org/tutorials/decimal_mode.html
+            // for an explanation in decimal subtraction. This handles invalid
+            // decimals in as close a way to the hardware as possible.
+            var c = carry ? 1 : 0;
+
+            var al = (a & 0x0F) - (b & 0x0F) + (c - 1);
+            if (al < 0)
+            {
+                al = ((al - 0x06) & 0x0F) - 0x10;
+            }
+
+            var intermediateResult = (a & 0xF0) - (b & 0xF0) + al;
+            if (intermediateResult < 0)
+            {
+                intermediateResult -= 0x60;
+            }
+
+            var result = (byte)(intermediateResult % 256);
+
+            var binaryResult = SubtractBinary(a, b, carry);
+
+            return new ArithmeticResult(binaryResult.Overflowed, binaryResult.Carried, binaryResult.Zeroed, binaryResult.Negative, result);
+        }
     }
 }
