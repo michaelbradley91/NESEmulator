@@ -13,27 +13,20 @@ namespace NESEmulator.CPU.Helpers
         public static ArithmeticResult AddBinary(byte firstByte, byte secondByte, bool carry)
         {
             var carryOccurred = false;
-            bool overflowOccurred;
 
-            var trueResult = firstByte + secondByte + (carry ? 1 : 0);
-            if (trueResult > 255)
+            var trueUnsignedResult = firstByte + secondByte + (carry ? 1 : 0);
+            if (trueUnsignedResult > 255)
             {
                 carryOccurred = true;
             }
 
-            var result = (byte)(trueResult % 256);
-            if (result < 128)
-            {
-                // Positive result
-                overflowOccurred = trueResult < 0;
-            }
-            else
-            {
-                // Negative result
-                overflowOccurred = trueResult >= 0;
-            }
+            var result = (byte)(trueUnsignedResult % 256);
+            var isNegative = result >= 128;
 
-            return new ArithmeticResult(overflowOccurred, carryOccurred, result == 0, result >= 128, result);
+            var trueSignedResult = (sbyte)firstByte + (sbyte)secondByte + (carry ? 1 : 0);
+            var overflowOccurred = trueSignedResult < 0 && !isNegative || trueSignedResult >= 0 && isNegative;
+            
+            return new ArithmeticResult(overflowOccurred, carryOccurred, result == 0, isNegative, result);
         }
 
         public static ArithmeticResult AddDecimal(byte a, byte b, bool carry)
@@ -57,6 +50,7 @@ namespace NESEmulator.CPU.Helpers
             var carryOccurred = intermediateResult >= 0x100;
 
             // Some other details: http://visual6502.org/wiki/index.php?title=6502DecimalMode
+            // All about the overflow flag specifically: http://www.6502.org/tutorials/vflag.html
 
             // Sequence two (al is the same)
             var otherIntermediateResult = (sbyte)(a & 0xF0) + (sbyte)(b & 0xF0) + (sbyte)al;

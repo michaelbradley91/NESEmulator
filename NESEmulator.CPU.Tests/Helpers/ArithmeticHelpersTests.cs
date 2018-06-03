@@ -25,9 +25,6 @@ namespace NESEmulator.CPU.Tests.Helpers
         {
             var result = ArithmeticHelpers.AddDecimal(a, b, inputCarry);
 
-            Console.WriteLine("Negative? " + negative);
-            Console.WriteLine("Overflowed? " + overflow);
-
             result.Result.Should().Be(resultValue);
             result.Carried.Should().Be(resultCarry);
             result.Overflowed.Should().Be(overflow);
