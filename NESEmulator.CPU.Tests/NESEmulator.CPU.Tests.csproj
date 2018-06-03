@@ -65,6 +65,7 @@
     <Compile Include="Addressing\IndexedIndirectXTests.cs" />
     <Compile Include="Addressing\ImmediateTests.cs" />
     <Compile Include="Addressing\AbsoluteTests.cs" />
+    <Compile Include="Helpers\ArithmeticHelpersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

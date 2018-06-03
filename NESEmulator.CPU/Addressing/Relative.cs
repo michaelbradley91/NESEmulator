@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NESEmulator.CPU.Addressing
+﻿namespace NESEmulator.CPU.Addressing
 {
     public class Relative : IAddressingMode
     {

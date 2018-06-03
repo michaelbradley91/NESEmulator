@@ -1,10 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NESEmulator.CPU.Addressing;
 
 namespace NESEmulator.CPU.Operations
 {
+    /**
+     * Store the value in register A into memory.
+     *
+     * This does not affect any processor status flags.
+     */
     public class STA : IOperation
     {
         public static IDictionary<byte, IAddressingMode> OpcodeMap { get; } =

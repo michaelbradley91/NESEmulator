@@ -1,10 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NESEmulator.CPU.Addressing;
 
 namespace NESEmulator.CPU.Operations
 {
+    /**
+     * Load a value in memory into the A register.
+     *
+     * Flags:
+     * All flags mentioned are set to zero if the condition is not met. All other flags
+     * do not have their value changed.
+     *
+     * If the value is negative in two's complement (the 7th bit is set), the Negative Flag is set.
+     * If the value is zero, the Zero Flag is set.
+     */
     public class LDA : IOperation
     {
         public static IDictionary<byte, IAddressingMode> OpcodeMap { get; } =
