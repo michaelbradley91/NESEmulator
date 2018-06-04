@@ -1,5 +1,6 @@
 ﻿namespace NESEmulator.CPU
 {
+    // TODO conaider allowing a longer stack for unofficial opcodes
     public class State
     {
         /**

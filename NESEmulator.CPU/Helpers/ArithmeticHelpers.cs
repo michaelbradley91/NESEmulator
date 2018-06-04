@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using NESEmulator.CPU.Models;
 
 namespace NESEmulator.CPU.Helpers

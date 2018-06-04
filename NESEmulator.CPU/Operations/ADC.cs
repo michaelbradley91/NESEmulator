@@ -2,7 +2,7 @@
 using System.Linq;
 using NESEmulator.CPU.Addressing;
 using NESEmulator.CPU.Helpers;
-using NESEmulator.CPU.Models;
+using NESEmulator.CPU.Operations.Bases;
 
 namespace NESEmulator.CPU.Operations
 {

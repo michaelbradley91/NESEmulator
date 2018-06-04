@@ -1,4 +1,4 @@
-﻿namespace NESEmulator.CPU.Operations
+﻿namespace NESEmulator.CPU.Operations.Bases
 {
     
     public interface IOperation
